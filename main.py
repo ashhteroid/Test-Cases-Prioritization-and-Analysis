@@ -19,6 +19,8 @@ import gcov_parse
 Initializations
 '''
 exclu=[]
+pname="tcas"
+location="/Users/Ashwin/Downloads/benchmarks/"+pname
 
 '''
 Cleaning
@@ -32,9 +34,15 @@ Helper Functions
 
 
 '''
-Testset parse module returns a dictionary with Key in range '1 to No_of_tests' and value as the testcases.
+Testset parse module 
+
+returns:
+A dictionary with Key in range '1 to No_of_tests' and value as the testcases.
+
+input:
+program name, location of program.
 '''
-testset=testset_parse.parse()
+testset=testset_parse.parse(pname,location)
 
 '''
 Gcov parse module 
