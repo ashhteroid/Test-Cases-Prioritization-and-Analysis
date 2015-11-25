@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.4
+	@version  1.6
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -14,6 +14,7 @@ import sys
 import subprocess
 import testset_parse
 import gcov_parse
+import rand_pri
 
 '''
 Initializations
@@ -43,10 +44,15 @@ input:		testset and Exclution set
 '''
 
 state_testset,branch_testset,sb_testset=gcov_parse.parse(testset,exclu,tot_statements)
-print state_testset
-print branch_testset
-print sb_testset
 
+
+
+'''Random prioritization
+returns:	Random prioritizated testsets for statement, branch and both coverage.
+input:		testset, program name and location of program
+'''
+Ran_S,Ran_B,Ran_SB=rand_pri.pri(testset.values(),pname,location)
+print Ran_S
 
 
 

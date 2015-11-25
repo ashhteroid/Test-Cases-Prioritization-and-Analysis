@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.4
+	@version  1.6
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -30,13 +30,13 @@ def parse(testset,exclu,total):
 
 		Sout.close()
 
-		Stu=(total-scount,testset[key].strip('\n'))
+		Stu=(total-scount,testset[key])
 		state_testset.append(Stu)
 
-		Btu=(bcount,testset[key].strip('\n'))
+		Btu=(bcount,testset[key])
 		branch_testset.append(Btu)
 
-		SBtu=(bcount+total-scount,testset[key].strip('\n'))
+		SBtu=(bcount+total-scount,testset[key])
 		sb_testset.append(SBtu)
 
 

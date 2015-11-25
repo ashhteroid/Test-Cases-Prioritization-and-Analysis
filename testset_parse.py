@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.4
+	@version  1.6
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -39,7 +39,7 @@ def parse(pname,location):
 
 	for line in uni:
 		i=i+1
-		testset[i]=str(line)
+		testset[i]=str(line.strip('\n'))
 		subprocess.call("./"+pname+" "+str(line),shell=True)
 
 		temp_out=subprocess.check_output("gcov -b -c "+pname,shell=True)
