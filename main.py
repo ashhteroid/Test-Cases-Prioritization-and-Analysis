@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.3
+	@version  1.4
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -28,34 +28,29 @@ Cleaning
 subprocess.call("rm -r outputs",shell=True)
 subprocess.call("mkdir outputs",shell=True)
 
-'''
-Helper Functions
-'''
-
 
 '''
 Testset parse module 
-
-returns:
-A dictionary with Key in range '1 to No_of_tests' and value as the testcases.
-
-input:
-program name, location of program.
+returns: 	A dictionary with Key in range '1 to No_of_tests' and value as the testcases and total number of statements in program.
+input: 		program name, location of program.
 '''
-testset=testset_parse.parse(pname,location)
+testset,tot_statements=testset_parse.parse(pname,location)
 
 '''
 Gcov parse module 
-
-returns:
-state_testset=list of <testcase,No of statements it didnt cover>
-Brances_testset=list of <testcase,No of brances it covers>
-
-input:
-testset and Exclution set()
+returns:	state_testset=list of <testcase,No of statements it covers> and Brances_testset=list of <testcase,No of brances it covers>
+input:		testset and Exclution set
 '''
 
-state_testset,branch_testset=gcov_parse.parse(testset,exclu)
+state_testset,branch_testset,sb_testset=gcov_parse.parse(testset,exclu,tot_statements)
 print state_testset
+print branch_testset
+print sb_testset
+
+
+
+
+
+
 
 

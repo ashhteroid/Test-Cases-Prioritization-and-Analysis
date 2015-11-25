@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.3
+	@version  1.4
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -13,39 +13,39 @@ import sys
 
 def parse(pname,location):
 	
-	'''
-	Initializations
-	'''
+	'''Initializations and clean up'''
+
 	testset={}
 	uni=open(location+"/universe.txt")
 	i=0
-	
-	'''
-	Clean up and Folder initialization.
-	'''
-	subprocess.call("rm -r outputs/State_outputs",shell=True)
-	subprocess.call("mkdir outputs/State_outputs",shell=True)
-	subprocess.call("rm -r outputs/Branch_outputs",shell=True)
-	subprocess.call("mkdir outputs/Branch_outputs",shell=True)
-
-	
-	'''
-	Parsing of statement coverage info
-	'''
-
-	subprocess.call(["rm",pname+".c.gcov"])
-	subprocess.call(["rm",pname+".gcda"])
+	subprocess.call(["rm",pname+".gcno"])
+	subprocess.call(["rm","-r",pname+".dsYM"])
+	subprocess.call(["rm",pname])
 	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o "+pname+" "+location+"/"+pname+".c",shell=True)
 
+	
+	'''
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	Parsing of statement coverage info
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	'''
+
+	'''Clean up of files generated after ./ and gcov'''
+	subprocess.call(["rm",pname+".c.gcov"])
+	subprocess.call(["rm",pname+".gcda"])
+	
+
+	'''Runnning each case and storing output'''
 
 	for line in uni:
 		i=i+1
 		testset[i]=str(line)
 		subprocess.call("./"+pname+" "+str(line),shell=True)
-		temp_out=subprocess.check_output("gcov "+pname,shell=True)
-		print temp_out,"\n"
+
+		temp_out=subprocess.check_output("gcov -b -c "+pname,shell=True)
+		tot_statements=int(temp_out.split('\n')[1].split()[-1])
 		try:
-			check=subprocess.check_output("mv "+pname+".c.gcov"+" Outputs/State_outputs/"+str(i),shell=True)
+			check=subprocess.check_output("mv "+pname+".c.gcov"+" outputs/"+str(i),shell=True)
 			print check
 			subprocess.call(["rm",pname+".gcda"])
 		except Exception as e:
@@ -54,8 +54,10 @@ def parse(pname,location):
 			sys.exit(0)
 
 
+
+
 	'''
-	Clean up
+	Clean up- Removing obj file, gcno and dsYM created after compiling.
 	'''
 	uni.close()
 	subprocess.call(["rm",pname+".gcno"])
@@ -63,4 +65,4 @@ def parse(pname,location):
 	subprocess.call(["rm",pname])
 	
 
-	return testset
+	return testset,tot_statements

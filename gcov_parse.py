@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.3
+	@version  1.4
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -11,17 +11,34 @@
 '''
 
 
-def parse(testset,exclu):
+def parse(testset,exclu,total):
 	state_testset=[]
+	branch_testset=[]
+	sb_testset=[]
+	flag=True
 	for key in testset:
-		count=0
-		Sout=open("outputs/State_outputs/"+str(key))
+		scount=0
+		bcount=0
+		Sout=open("outputs/"+str(key))
 		for line in Sout.readlines():
 			if line.split(':')[0]=="    #####":
-				count+=1
+				scount+=1
+
+			ls=line.split()
+			if ls[0]=="branch" and ls[2]=="taken" and int(ls[3])>0:
+				bcount+=1
+
 		Sout.close()
-		tu=(count,testset[key].strip('\n'))
-		state_testset.append(tu)
+
+		Stu=(total-scount,testset[key].strip('\n'))
+		state_testset.append(Stu)
+
+		Btu=(bcount,testset[key].strip('\n'))
+		branch_testset.append(Btu)
+
+		SBtu=(bcount+total-scount,testset[key].strip('\n'))
+		sb_testset.append(SBtu)
 
 
-	return state_testset,0
+
+	return state_testset,branch_testset,sb_testset
