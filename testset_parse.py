@@ -1,33 +1,44 @@
-'''  =================================================================
-  @version  1.1
-  @author   Ashwin Ramadevanahalli
-  @title    Testing.
- 	 =================================================================
+'''  
+=================================================================
+	@version  1.3
+	@author   Ashwin Ramadevanahalli
+	@title    Testing.
 
-Testset_parse module.
-######################################################################
+
+	Testset parse module.
+=================================================================
 '''
 import subprocess
 import sys
 
 def parse():
 	
+	'''
+	Initializations
+	'''
 	location="/Users/Ashwin/Downloads/benchmarks/tcas"
 	testset={}
 	uni=open(location+"/universe.txt")
+	i=0
+	
+	'''
+	Clean up and Folder initialization.
+	'''
 	subprocess.call("rm -r outputs/State_outputs",shell=True)
 	subprocess.call("mkdir outputs/State_outputs",shell=True)
 	subprocess.call("rm -r outputs/Branch_outputs",shell=True)
 	subprocess.call("mkdir outputs/Branch_outputs",shell=True)
 
 	
-	'''Clean up'''
-	
+	'''
+	Parsing of statement coverage info
+	'''
+
 	subprocess.call(["rm","tcas.c.gcov"])
 	subprocess.call(["rm","tcas.gcda"])
 	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o tcas "+location+"/tcas.c",shell=True)
 
-	i=0
+
 	for line in uni:
 		i=i+1
 		testset[i]=str(line)
@@ -44,8 +55,13 @@ def parse():
 			sys.exit(0)
 
 
-
+	'''
+	Clean up
+	'''
+	uni.close()
 	subprocess.call(["rm","tcas.gcno"])
 	subprocess.call(["rm","-r","tcas.dSYM"])
 	subprocess.call(["rm","tcas"])
+	
+
 	return testset
