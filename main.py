@@ -15,6 +15,7 @@ import subprocess
 import testset_parse
 import gcov_parse
 import rand_pri
+import tot_pri
 
 '''
 Initializations
@@ -39,7 +40,7 @@ testset,tot_statements=testset_parse.parse(pname,location)
 
 '''
 Gcov parse module 
-returns:	state_testset=list of <testcase,No of statements it covers> and Brances_testset=list of <testcase,No of brances it covers>
+returns:	state_testset=list of <No of statements it covers,testcase> and Brances_testset=list of <No of brances it covers,testcase> and both.
 input:		testset and Exclution set
 '''
 
@@ -51,10 +52,15 @@ state_testset,branch_testset,sb_testset=gcov_parse.parse(testset,exclu,tot_state
 returns:	Random prioritizated testsets for statement, branch and both coverage.
 input:		testset, program name and location of program
 '''
-Ran_S,Ran_B,Ran_SB=rand_pri.pri(testset.values(),pname,location)
-print Ran_S
+#Ran_S,Ran_B,Ran_SB=rand_pri.pri(testset.values(),pname,location)
 
+'''Total coverage prioritization
+returns:	Total coverage prioritizated testsets for statement, branch and both coverage.
+input:		testsets with coverage information, program name and location of program.
+'''
+Tot_S,Tot_B,Tot_SB=tot_pri.pri(state_testset,branch_testset,sb_testset,pname,location)
 
+print Tot_S
 
 
 

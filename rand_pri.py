@@ -39,25 +39,18 @@ def pri(tests,pname,location):
 		subprocess.call("./"+pname+" "+test,shell=True)
 		temp_out=subprocess.check_output("gcov -b -c "+pname,shell=True)
 		
-		if 80==float(temp_out.split('\n')[1].split(':')[-1].split()[0].strip('%')):
+		if 100==float(temp_out.split('\n')[1].split(':')[-1].split()[0].strip('%')):
 			sflag=False
 
-		if 76==float(temp_out.split('\n')[2].split(':')[-1].split()[0].strip('%')):
+		if 100==float(temp_out.split('\n')[2].split(':')[-1].split()[0].strip('%')):
 			bflag=False
 
 		if not(sflag) and not(bflag):
-			break
-		else:
-			sys.exit("Adequate test not found")
+			return s_adeq_suite,b_adeq_suite,sb_adeq_suite
+
+	sys.exit("Adequate test not found(random)")
 
 
 
-
-
-
-
-
-
-	return s_adeq_suite,b_adeq_suite,sb_adeq_suite
 
 
