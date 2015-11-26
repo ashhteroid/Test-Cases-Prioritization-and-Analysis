@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.7
+	@version  1.8
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -15,7 +15,7 @@ import sys
 '''Intializations'''
 
 
-def pri(tests,pname,location):
+def pri(tests,pname,location,maxlim):
 	s_adeq_suite=[]
 	b_adeq_suite=[]
 	sb_adeq_suite=[]
@@ -27,7 +27,7 @@ def pri(tests,pname,location):
 	subprocess.call(["rm",pname])
 	subprocess.call(["rm",pname+".c.gcov"])
 	subprocess.call(["rm",pname+".gcda"])
-	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o "+pname+" "+location+"/"+pname+".c",shell=True)
+	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o "+pname+" "+location+pname+".c",shell=True)
 	for test in tests:
 
 		if sflag==True:
@@ -38,8 +38,7 @@ def pri(tests,pname,location):
 
 		subprocess.call("./"+pname+" "+test,shell=True)
 		temp_out=subprocess.check_output("gcov -b -c "+pname,shell=True)
-		
-		if 100==float(temp_out.split('\n')[1].split(':')[-1].split()[0].strip('%')):
+		if  float(maxlim[pname])==float(temp_out.split('\n')[1].split(':')[-1].split()[0].strip('%')):
 			sflag=False
 
 		if 100==float(temp_out.split('\n')[2].split(':')[-1].split()[0].strip('%')):

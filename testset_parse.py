@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.7
+	@version  1.8
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -16,12 +16,12 @@ def parse(pname,location):
 	'''Initializations and clean up'''
 
 	testset={}
-	uni=open(location+"/universe.txt")
+	uni=open(location+"universe.txt")
 	i=0
 	subprocess.call(["rm",pname+".gcno"])
 	subprocess.call(["rm","-r",pname+".dsYM"])
 	subprocess.call(["rm",pname])
-	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o "+pname+" "+location+"/"+pname+".c",shell=True)
+	subprocess.call("gcc -fprofile-arcs -ftest-coverage -g -o "+pname+" "+location+pname+".c",shell=True)
 
 	
 	'''
@@ -46,7 +46,6 @@ def parse(pname,location):
 		tot_statements=int(temp_out.split('\n')[1].split()[-1])
 		try:
 			check=subprocess.check_output("mv "+pname+".c.gcov"+" outputs/"+str(i),shell=True)
-			print check
 			subprocess.call(["rm",pname+".gcda"])
 		except Exception as e:
 			logging.error(traceback.format_exc())
@@ -65,4 +64,4 @@ def parse(pname,location):
 	subprocess.call(["rm",pname])
 	
 
-	return testset,tot_statements
+	return testset,tot_statements,i

@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.7
+	@version  1.8
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -11,7 +11,7 @@
 '''
 
 
-def parse(testset,exclu,total):
+def parse(testset,total):
 	state_testset=[]
 	branch_testset=[]
 	sb_testset=[]
