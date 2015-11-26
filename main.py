@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.6
+	@version  1.7
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -16,6 +16,7 @@ import testset_parse
 import gcov_parse
 import rand_pri
 import tot_pri
+import add_pri
 
 '''
 Initializations
@@ -48,19 +49,28 @@ state_testset,branch_testset,sb_testset=gcov_parse.parse(testset,exclu,tot_state
 
 
 
-'''Random prioritization
+'''
+Random prioritization
 returns:	Random prioritizated testsets for statement, branch and both coverage.
 input:		testset, program name and location of program
 '''
 #Ran_S,Ran_B,Ran_SB=rand_pri.pri(testset.values(),pname,location)
 
-'''Total coverage prioritization
+'''
+Total coverage prioritization
 returns:	Total coverage prioritizated testsets for statement, branch and both coverage.
 input:		testsets with coverage information, program name and location of program.
 '''
-Tot_S,Tot_B,Tot_SB=tot_pri.pri(state_testset,branch_testset,sb_testset,pname,location)
+#Tot_S,Tot_B,Tot_SB=tot_pri.pri(state_testset,branch_testset,sb_testset,pname,location)
 
-print Tot_S
+
+'''
+Additional coverage prioritization
+returns:	Additional coverage prioritizated testsets for statement, branch and both coverage.
+input:		testsets with coverage information, program name and location of program.
+'''
+
+Add_S,Add_B,Add_SB=add_pri.pri(state_testset,branch_testset,sb_testset,pname,location)
 
 
 
