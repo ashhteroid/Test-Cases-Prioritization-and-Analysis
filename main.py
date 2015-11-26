@@ -1,6 +1,6 @@
 '''  
 =================================================================
-	@version  1.8
+	@version  2.0
 	@author   Ashwin Ramadevanahalli
 	@title    Testing.
 
@@ -17,13 +17,15 @@ import gcov_parse
 import rand_pri
 import tot_pri
 import add_pri
+import pickle
+
 
 '''
 Initializations
 '''
 pname=str(str(subprocess.check_output("pwd",shell=True)).split('/')[-1].strip())
 location=""
-maxlimit={'tcas':96.67,'totinfo':97.04,'printtokens':95.34,'printokens2':99.50,'replace':95.02,'schedule':98.67,'schedule2':99.23}
+maxlimit={'tcas':96.67,'totinfo':97.04,'printtokens':95.34,'printtokens2':99.50,'replace':95.02,'schedule':98.67,'schedule2':99.23}
 #location="/Users/Ashwin/Downloads/benchmarks/"+pname+"/"
 
 
@@ -92,7 +94,53 @@ print len(Add_S)
 print len(Add_B)
 print len(Add_SB)
 
+
+
 print "Total number of test cases=",No_of_tests
+
+
+'''Storing Results'''
+subprocess.call("rm -r results",shell=True)
+
+subprocess.call("mkdir results",shell=True)
+
+test=open("results/sran","w")
+pickle.dump(Ran_S, test)
+test.close()
+
+test=open("results/bran","w")
+pickle.dump(Ran_B, test)
+test.close()
+
+test=open("results/sbran","w")
+pickle.dump(Ran_SB, test)
+test.close()
+
+test=open("results/stot","w")
+pickle.dump(Tot_S, test)
+test.close()
+
+test=open("results/btot","w")
+pickle.dump(Tot_B, test)
+test.close()
+
+test=open("results/sbtot","w")
+pickle.dump(Tot_SB, test)
+test.close()
+
+test=open("results/sadd","w")
+pickle.dump(Add_S, test)
+test.close()
+
+test=open("results/badd","w")
+pickle.dump(Add_B, test)
+test.close()
+
+test=open("results/sbadd","w")
+pickle.dump(Add_SB, test)
+test.close()
+
+print "Task Complete.Thank you."
 
 
 
