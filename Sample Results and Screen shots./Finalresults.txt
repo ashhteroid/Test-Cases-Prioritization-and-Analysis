@@ -1,0 +1,77 @@
+tcas analysis.
+Faults revealed by sran : 31
+Faults revealed by bran : 31
+Faults revealed by sbran : 27
+Faults revealed by stot : 41
+Faults revealed by btot : 41
+Faults revealed by sbtot : 41
+Faults revealed by sadd : 10
+Faults revealed by badd : 15
+Faults revealed by sbadd : 15
+Total Faults: 49
+totinfo analysis.
+Faults revealed by sran : 11
+Faults revealed by bran : 16
+Faults revealed by sbran : 13
+Faults revealed by stot : 19
+Faults revealed by btot : 19
+Faults revealed by sbtot : 19
+Faults revealed by sadd : 11
+Faults revealed by badd : 12
+Faults revealed by sbadd : 11
+Total Faults: 31
+printtokens analysis.
+Faults revealed by sran : 7
+Faults revealed by bran : 7
+Faults revealed by sbran : 7
+Faults revealed by stot : 7
+Faults revealed by btot : 7
+Faults revealed by sbtot : 7
+Faults revealed by sadd : 6
+Faults revealed by badd : 5
+Faults revealed by sbadd : 5
+Total Faults: 15
+printtokens2 analysis.
+Faults revealed by sran : 7
+Faults revealed by bran : 7
+Faults revealed by sbran : 7
+Faults revealed by stot : 7
+Faults revealed by btot : 7
+Faults revealed by sbtot : 7
+Faults revealed by sadd : 5
+Faults revealed by badd : 5
+Faults revealed by sbadd : 5
+Total Faults: 17
+replace analysis.
+Faults revealed by sran : 25
+Faults revealed by bran : 24
+Faults revealed by sbran : 26
+Faults revealed by stot : 30
+Faults revealed by btot : 30
+Faults revealed by sbtot : 30
+Faults revealed by sadd : 5
+Faults revealed by badd : 15
+Faults revealed by sbadd : 11
+Total Faults: 39
+schedule analysis.
+Faults revealed by sran : 5
+Faults revealed by bran : 8
+Faults revealed by sbran : 9
+Faults revealed by stot : 9
+Faults revealed by btot : 9
+Faults revealed by sbtot : 9
+Faults revealed by sadd : 4
+Faults revealed by badd : 6
+Faults revealed by sbadd : 6
+Total Faults: 17
+schedule2 analysis.
+Faults revealed by sran : 2
+Faults revealed by bran : 9
+Faults revealed by sbran : 9
+Faults revealed by stot : 3
+Faults revealed by btot : 9
+Faults revealed by sbtot : 9
+Faults revealed by sadd : 3
+Faults revealed by badd : 2
+Faults revealed by sbadd : 2
+Total Faults: 17
