@@ -1,7 +1,7 @@
-# version  3.0
-# author   Ashwin Ramadevanahalli
-# title    Software Testing Project
-# date	   Nov 27th 2015
+### version  3.0
+### author   Ashwin Ramadevanahalli
+### title    Software Testing Project
+### date	   Nov 27th 2015
 
 This is a python script to select testsuite from a given set of tests for a program.(gcov is used to obtain branch coverage and statement coverage information)
 
@@ -15,7 +15,7 @@ It generates test suits for Branch coverage, Statement coverage and both-each us
 
 3.**Additional branch coverage prioritization.** Iteratively selects a test case that yields the greatest branch coverage, then adjusts the coverage information on subsequent test cases to indicate their coverage of branches not yet covered, and then repeats this process, until all branches covered by at least one test case have been covered.  
 
-##How to run the script:
+How to run the script:
 1. Place all the files in the folder containg your c program.
 2. Make sure the folder containingg your program and your program are named same.(Example: 'test/test.c'.)
 3. Execute main.py
