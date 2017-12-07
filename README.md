@@ -1,9 +1,7 @@
-=================================================================
 	#@version  3.0
 	#@author   Ashwin Ramadevanahalli
 	#@title    Software Testing Project
 	#@date	   Nov 27th 2015
-=================================================================
 
 This is a python script to select testsuite from a given set of tests for a program.(gcov is used to obtain branch coverage and statement coverage information)
 
